@@ -6,16 +6,23 @@
 
 ```ts
 interface Todo {
-  title: string
-  description: string
-  completed: boolean
+	title: string
+	description: string
+	completed: boolean
 }
 
 type TodoPreview = MyPick<Todo, 'title' | 'completed'>
 
 const todo: TodoPreview = {
-    title: 'Clean room',
-    completed: false,
+	title: 'Clean room',
+	completed: false,
+}
+
+// 내장 유틸리티 타입인 Pick<T, K>를 직접 구현해보세요.
+// T에 있는 프로퍼티 중 K에 속하는 프로퍼티를 선택하는 타입을 만들어야 합니다.
+
+type MyPick<T, K extends keyof T> = {
+	[P in K]: T[P]
 }
 ```
 
